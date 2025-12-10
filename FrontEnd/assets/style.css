@@ -30,9 +30,17 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  background-color: #FFFEF8;
 }
 ol, ul {
 	list-style: none;
+}
+li a {
+  text-decoration: none;
+  color: black;
+}
+li:hover {
+  font-weight: 900;
 }
 blockquote, q {
 	quotes: none;
@@ -88,19 +96,22 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
+  gap: 15px
 
 }
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
-
-li:hover {
-	color: #B1663C;
+nav img {
+  width:22px ;
+  height:22px ;
 }
 #introduction {
 	display: flex;
 	align-items: center;
+  margin-bottom: 100px;
+  margin-top: 130px;
 }
 #introduction figure {
 	flex: 1
@@ -116,14 +127,21 @@ li:hover {
 }
 #introduction h2 {
 	margin-bottom: 1em;
+  font-weight: bold;
+  font-family: 'Syne';
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
+	margin-bottom: 1em;
+  width: 404px;
+  height: 100%;
+  color: #3D3D3D;
+  font-size: 14px;
+  font-family: 'Work Sans';
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	margin-bottom: 1.5em;
 }
 .gallery {
 	width: 100%;
@@ -136,6 +154,12 @@ li:hover {
 .gallery img {
 	width: 100%;
 
+}
+.gallery h3 {
+  margin-top: 3px;
+  font-weight: 300px;
+  color: #3D3D3D;
+  font-size: 13px;
 }
 #contact {
 	width: 50%;
@@ -186,18 +210,24 @@ footer nav ul {
 	margin: 2em
 }
 
-.filtres button {
+.filtres {
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: white;
-  color:#1D6154;
-  border-radius: 60px;
-  gap: 5px;
-  width: 100%;
-  max-width: 150px;
-  flex: 1 1 0;
-  height: 30px;
-  margin: auto;
+  gap: 10px;
+  margin-top: 20px;
 }
 
+.filtres button {
+  border: 1px solid #1D6154;
+  border-radius: 60px;
+  padding: 8px 20px;
+  background-color: white;
+  color: #1D6154;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+}
+
+.filtres button.active {
+  background-color: #1D6154;
+  color: white;
+}

@@ -37,6 +37,11 @@ function btnFiltres () {
   for (let i = 0; i < boutonFiltres.length; i++){
     boutonFiltres[i].addEventListener("click", function (event) {
       // Récupération de l'id du bouton cliqué (converti en nombre)
+      for (let j = 0; j < boutonFiltres.length; j++) {
+        boutonFiltres[j].classList.remove("active");
+      }
+      event.target.classList.add("active");
+      
       const btnClique = parseInt(event.target.dataset.id);
       // Si le bouton "Tous" est cliqué (id = 0), on réaffiche tous les travaux
       if (btnClique === 0) {

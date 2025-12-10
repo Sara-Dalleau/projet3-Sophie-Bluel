@@ -42,7 +42,7 @@ function btnFiltres () {
       if (btnClique === 0) {
         afficherTravaux(tableauElement);
     } 
-    // Sinon, on filtre les travaux selon l'id de la catégorie cliquée
+    // Sinon on filtre les travaux selon l'id de la catégorie cliquée
     else {
         const travauxFiltres = tableauElement.filter(function (travail) {
           return travail.categoryId === btnClique;

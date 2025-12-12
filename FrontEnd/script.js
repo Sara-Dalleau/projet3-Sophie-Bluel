@@ -84,6 +84,16 @@ function afficherTravaux(tableau) {
   }
 }
 
+//Fonction d'initialisation: attend que les travaux et filtres soient récupérés et affichés, puis active les event sur boutons filtres
+async function init () {
+  await recupererTravaux();
+  afficherTravaux(tableauElement);
+
+  await recupererFiltres();
+  btnFiltres()
+}
+init(); 
+
 //FORMULAIRE 
   async function formulaire() {
     // Sélection du formulaire
@@ -92,8 +102,8 @@ function afficherTravaux(tableau) {
   // Écoute de l’événement submit
   recupForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    console.log("submit ok");
-    // Récupération des valeurs email / password
+    console.log("submit ok ")
+    // Récupération des valeurs email et password
     const inputEmail = document.getElementById("email").value;
     const inputPassword = document.getElementById("password").value;
     // Envoi d’une requête POST /users/login
@@ -124,14 +134,34 @@ function afficherTravaux(tableau) {
     }
   });
   }
+  
   formulaire ();
 
-//Fonction d'initialisation: attend que les travaux et filtres soient récupérés et affichés, puis active les event sur boutons filtres
-async function init () {
-  await recupererTravaux();
-  afficherTravaux(tableauElement);
+  // ETAPE 5.3 : EN GROS
+  // 1. Verifier si utilisateur connecté ou non, 
+  //    au rechargement de la page regarder si le token existe (condition if/else)
+  //    et ensuite procéder au étapes suivantes: 
+  // 2. Bandeau noir à ajouté dynamiquement ou html et caché par défaut
+  // 3. Login devient logout: changer le texte, cacher login afficher logout.
+  // 4. Logout : au moment du click supprimer le token retour en mode normal 
+  // 5. filtres : connecté > filtres cachés, non connecté > filtres visibles
+  // 6. Bouton de modifications (modifier + icone )
 
-  await recupererFiltres();
-  btnFiltres()
-}
-init(); 
+  //DETAILS
+  // 1. lecture du localStorage + une variable token + condition if/else
+  //    si token existe : mode connecté sinon mode visiteur
+
+  // SI TOKEN EXISTE : 
+  // 2. Bandeau noir : HTML + css + display: none; + simple
+  // 3. Bouton modifier : create dom + insertion (createElement+ appendchild ...)
+  // 4. Login par logout : selectionner lien login, modification du texte (textcontent) 
+  //    + ajout addEventListener("click") sur Logout
+  // 5. Logout click : localStorage.removeItem(..) et redirection (window.location.href = ...)
+  //
+  // 6. Cacher les filtres : selectionner la classe filtres
+  //    class CSS type hidden ou style.display = "none";
+  // 7. remettre l'utilisateur en mode visiteur:
+  //    réafficher filtres, remettre login, retirer bandeau, retirer bouton modifier
+  //    rechargement de la page après logout 
+
+  //execution au chargement de la page (defer)

@@ -317,3 +317,53 @@ nav ul li a.active {
   font-weight: bold;
   font-style: italic;
 }
+
+/* PAGE D'ACCUEIL MODE CONNECTÉ*/
+
+/* Bouton modifier*/
+.portfolio-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 30px;
+}
+.portfolio-header h2 {
+  margin: 0;
+}
+
+
+.btn-edit {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  border: none;
+  background-color: #FFFEF8;
+  font-family: 'Work sans';
+  font-size: 14px;
+  width: 58px;
+  height: 16px;
+  transform: translateY(-3px);
+}
+
+/*BANDEAU EDITION*/
+.bandeau-edition {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  height: 59px;
+  background-color: black;
+  color: white;
+  gap: 10px;
+  font-family: 'Work Sans';
+  font-size: 16px;
+  z-index: 1000;
+}
+
+
+
+
+

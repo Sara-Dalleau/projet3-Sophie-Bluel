@@ -136,32 +136,46 @@ init();
   }
   
   formulaire ();
+  
+  // FONCTION MODE EDITION
 
-  // ETAPE 5.3 : EN GROS
-  // 1. Verifier si utilisateur connecté ou non, 
-  //    au rechargement de la page regarder si le token existe (condition if/else)
-  //    et ensuite procéder au étapes suivantes: 
-  // 2. Bandeau noir à ajouté dynamiquement ou html et caché par défaut
-  // 3. Login devient logout: changer le texte, cacher login afficher logout.
-  // 4. Logout : au moment du click supprimer le token retour en mode normal 
-  // 5. filtres : connecté > filtres cachés, non connecté > filtres visibles
-  // 6. Bouton de modifications (modifier + icone )
+  function modeEdition () {
+  const etat = localStorage.getItem("token");
 
-  //DETAILS
-  // 1. lecture du localStorage + une variable token + condition if/else
-  //    si token existe : mode connecté sinon mode visiteur
+  if (etat !== null){
+    //filtres cachés
+    const cacherFiltres = document.querySelector(".filtres");
+    cacherFiltres.style.display = "none";
+    // Login devient logout
+    let btnLogin = document.querySelector(".btnLogin");
+    let supLogin = btnLogin.setAttribute("href", "#");
+    btnLogin.textContent ="logout";
+    // Au click logout retour mode normal
+    btnLogin.addEventListener("click", () => {
+      localStorage.removeItem("token"); //suppression du token
+      (window.location.href = "index.html") // redirection page d'accueil
+    })
+    //Création Bouton modifier
+    const btnModifier = document.querySelector(".btnModifier");
 
-  // SI TOKEN EXISTE : 
-  // 2. Bandeau noir : HTML + css + display: none; + simple
-  // 3. Bouton modifier : create dom + insertion (createElement+ appendchild ...)
-  // 4. Login par logout : selectionner lien login, modification du texte (textcontent) 
-  //    + ajout addEventListener("click") sur Logout
-  // 5. Logout click : localStorage.removeItem(..) et redirection (window.location.href = ...)
-  //
-  // 6. Cacher les filtres : selectionner la classe filtres
-  //    class CSS type hidden ou style.display = "none";
-  // 7. remettre l'utilisateur en mode visiteur:
-  //    réafficher filtres, remettre login, retirer bandeau, retirer bouton modifier
-  //    rechargement de la page après logout 
+    const btn = document.createElement("button");
+    btn.classList.add("btn-edit");
+    
+    const icon = document.createElement("i");
+    icon.classList.add("fa-regular", "fa-pen-to-square");
+    
+    const text = document.createElement("span");
+    text.textContent = "modifier";
+    
+    btn.appendChild(icon);
+    btn.appendChild(text);
+    btnModifier.appendChild(btn);
 
-  //execution au chargement de la page (defer)
+    //Affichage bandeau edition 
+    const bandeauEdition = document.querySelector(".bandeau-edition");
+    bandeauEdition.style.display = "flex";
+  } else {
+
+  }
+}
+modeEdition();

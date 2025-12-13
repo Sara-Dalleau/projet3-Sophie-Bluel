@@ -142,13 +142,13 @@ init();
   function modeEdition () {
   const etat = localStorage.getItem("token");
 
-  if (etat !== null){
+  if (etat !== null) {
     //filtres cachés
     const cacherFiltres = document.querySelector(".filtres");
     cacherFiltres.style.display = "none";
     // Login devient logout
     let btnLogin = document.querySelector(".btnLogin");
-    let supLogin = btnLogin.setAttribute("href", "#");
+    btnLogin.setAttribute("href", "#");
     btnLogin.textContent ="logout";
     // Au click logout retour mode normal
     btnLogin.addEventListener("click", () => {
@@ -174,8 +174,6 @@ init();
     //Affichage bandeau edition 
     const bandeauEdition = document.querySelector(".bandeau-edition");
     bandeauEdition.style.display = "flex";
-  } else {
-
   }
 }
 modeEdition();

@@ -256,8 +256,6 @@ modeEdition();
 // Avant de créer > vérifier que ça n’existe pas déjà
 // A la fermeture > réinitialises l’état
 
-
-
-
+// Gérer arria hidden = "true" .... pour lecteur d'écran voir tuto ressources étapes 6. 
 
 

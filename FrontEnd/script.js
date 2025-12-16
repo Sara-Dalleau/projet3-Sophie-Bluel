@@ -242,6 +242,8 @@ modeEdition();
 
 // Gérer arria hidden = "true" .... pour lecteur d'écran voir tuto ressources étapes 6. 
 
+
+// Ouverture et fermeture modale 
 const modalBtnModifier = document.querySelector(".btnModifier");
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
@@ -259,9 +261,10 @@ function lectureEtat () {
 
 modalBtnModifier.addEventListener("click", (event )=> {
   etat = true;
+  etatInterne = "galerie"
   lectureEtat();
+  lectureEtatInterne()
 });
-
 modalBtnClose.addEventListener("click", (event) => {
   etat = false;
   lectureEtat();
@@ -272,3 +275,44 @@ overlay.addEventListener("click", (event) => {
   lectureEtat();
 });
 
+// Etat interne de la modale
+const modalBtnBack = document.querySelector(".btnBack");
+const btnAjouterPhoto = document.querySelector(".btnAjouterPhoto");
+const modalTitre = document.querySelector(".modal-titre");
+
+const galerie = document.querySelector(".container-gallery")
+const formulaireModal = document.querySelector(".container-form")
+
+let etatInterne = "galerie"; 
+
+
+function lectureEtatInterne () {
+  if (etatInterne === "galerie") {
+    modalTitre.textContent ="Galerie photo";
+
+    galerie.style.display = "flex";
+    formulaireModal.style.display = "none"
+
+    btnAjouterPhoto.style.display = "flex";
+    modalBtnBack.style.display = "none";
+    
+  } else {
+    modalTitre.textContent ="Ajout photo";
+
+    galerie.style.display = "none";
+    formulaireModal.style.display = "flex"
+
+    btnAjouterPhoto.style.display = "none";
+    modalBtnBack.style.display = "flex";
+  }
+}
+
+btnAjouterPhoto.addEventListener("click", (event) => {
+  etatInterne = "formulaire";
+  lectureEtatInterne();
+});
+
+modalBtnBack.addEventListener("click", (event) => {
+  etatInterne = "galerie";
+  lectureEtatInterne();
+});

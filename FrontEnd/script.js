@@ -185,7 +185,7 @@ modeEdition();
 // Le click sur le bouton modifier doit déclencher l'ouverte de la modale
 // La modale doit se fermer au click sur la croix + click en dehors de la modale
 // Il y a deux contenue donc deux états différent de la modale
-// Etat : galerie photo + ajout d'une photo via formulaire
+// Etats : galerie photo + ajout d'une photo via formulaire
 // Au click sur le bouton modifier l'état de la modale est galerie photo
 // Quand je passe de l'état galerie photo a ajout photo la modale,
 // ne doit pas se fermer et juste changer son contenu.

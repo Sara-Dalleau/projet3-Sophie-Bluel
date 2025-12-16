@@ -33,6 +33,62 @@
 	</nav>
 </header>
 
+<!--  MODALE  -->
+<section class="modal">
+  <div class="overlay"></div>
+
+  <div class="modal-content">
+    <!-- btn back -->
+    <button class="btnBack">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>  
+    <!-- btn close -->  
+    <button class="btnClose">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <h2>Galerie photo</h2>
+
+    <!-- ETAT GALERIE PHOTO -->
+    <div class="container-gallery">
+      <div class=".modal-gallery"></div>
+      <button type="submit">Ajouter une photo</button>
+    </div>
+
+    <!-- ETAT FORMULAIRE AJOUT PHOTO -->
+    <div class="container-form">
+      <form action="#">
+        <!-- upload photo -->
+        <div class="upload-photo">
+          <i class="fa-regular fa-image"></i>
+          <label for="photo" class="btn-upload">+ Ajouter photo</label>
+          <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/png, image/jpeg"
+            hidden
+          />
+          <p class="upload-info">jpg, png : 4mo max</p>
+        </div>
+        <!-- formulaire -->
+        <div class="form-group">
+          <label for="titre">Titre</label>
+          <input type="text" id="titre" name="titre">
+          <label for="categorie">Catégorie</label>
+          <select id="categorie" name="categorie">
+            <option value=""></option>
+          </select>
+        </div>
+        <!-- ligne séparation -->
+        <div class="form-separator"></div>
+
+        <button type="submit">Valider</button>
+      </form>
+    </div>
+  </div>
+</section>
+<!--  //MODALE  -->
+
 <main>
 
 	<section id="introduction">

@@ -210,22 +210,6 @@ modeEdition();
 
 // 1. verifier token 
 
-// HTML
-// 2. Créer modale en HTML: après le header, section modal (conteneur globale), 
-// > dedans un overlay (modal-overlay) > dedans boite de contenu (modal-content).
-
-// 3. a l'interieur de modal-content (bouton croix, 
-// bouton flèche(caché état galerie photo/afficher ajout photo), 
-// titre qui change celon état(ou caché puis affiché)).
-
-// 4. Créer état galerie photo: conteneur pour mini galerie + bouton ajouter une photo
-// puis état ajout photo: conteneur form, input, bouton valider
-
-//CSS 
-// 5. Caché modale par defaut display none
-// 6. overlay : plein écran, fond sombre voir figma, derriere la modale
-// 7. positionner modale: centré, fond blanc, arrondis, padding, z-index au dessus overlay
-// 8. afficher/masquer : zone galerie, zone formulaire, flèche retour
 
 //JS 
 
@@ -258,4 +242,33 @@ modeEdition();
 
 // Gérer arria hidden = "true" .... pour lecteur d'écran voir tuto ressources étapes 6. 
 
+const modalBtnModifier = document.querySelector(".btnModifier");
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const modalBtnClose = document.querySelector(".btnClose");
+
+let etat = false; 
+
+function lectureEtat () {
+  if (etat === true) {
+    modal.style.display = "flex";
+  } else {
+    modal.style.display = "none";
+  }
+}
+
+modalBtnModifier.addEventListener("click", (event )=> {
+  etat = true;
+  lectureEtat();
+});
+
+modalBtnClose.addEventListener("click", (event) => {
+  etat = false;
+  lectureEtat();
+});
+
+overlay.addEventListener("click", (event) => {
+  etat = false;
+  lectureEtat();
+});
 

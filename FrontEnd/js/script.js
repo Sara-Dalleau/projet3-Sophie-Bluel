@@ -212,7 +212,8 @@ function lectureEtatInterne () {
 
     btnAjouterPhoto.style.display = "flex";
     modalBtnBack.style.display = "none";
-    
+
+    afficherTravauxModale(tableauElement);
   } else {
     modalTitre.textContent ="Ajout photo";
 
@@ -232,6 +233,7 @@ btnAjouterPhoto.addEventListener("click", (event) => {
 modalBtnBack.addEventListener("click", (event) => {
   etatInterne = "galerie";
   lectureEtatInterne();
+  afficherTravauxModale(tableauElement);
 });
 
 // FONCTION VERIFIER TOUT LES CHAMPS ETC REMPLIT
@@ -314,3 +316,28 @@ inputPhoto.addEventListener("change", () => {
   previewImage.style.display = "block";
   uploadBox.classList.add("has-image");
   });
+
+// AFFICHER TRAVAUX MODALE
+
+const modalGallery = document.querySelector(".modal-gallery");
+modalGallery.innerHTML = "";
+
+function afficherTravauxModale(tableau) {
+  for (let i = 0; i < tableau.length; i++){
+    const figureElement = document.createElement("figure");
+
+    const imgElement = document.createElement("img");
+    imgElement.src = tableau[i].imageUrl;
+
+    const btnDelete = document.createElement("button");
+    btnDelete.classList.add("btn-delete");
+
+    const icon = document.createElement("i");
+    icon.classList.add("fa-solid", "fa-trash-can");
+    
+    figureElement.appendChild(icon);
+    figureElement.appendChild(imgElement);
+    modalGallery.appendChild(figureElement);
+  }
+}
+afficherTravauxModale(tableauElement);

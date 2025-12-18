@@ -1,5 +1,7 @@
 //FORMULAIRE 
+
 async function formulaire() {
+
   // Sélection du formulaire
 const recupForm = document.querySelector(".formulaire");
 
@@ -7,9 +9,11 @@ const recupForm = document.querySelector(".formulaire");
 recupForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   console.log("submit ok")
+
   // Récupération des valeurs email et password
   const inputEmail = document.getElementById("email").value;
   const inputPassword = document.getElementById("password").value;
+
   // Envoi d’une requête POST /users/login
   const reponse = await fetch("http://localhost:5678/api/users/login", {
     method: "POST",
@@ -17,8 +21,10 @@ recupForm.addEventListener("submit", async (event) => {
     // Body en JSON
     body: JSON.stringify({ email: inputEmail, password: inputPassword }),
   });
+
   // Analyse de la réponse :
   const status = reponse.status;
+  
   // si ok → récupérer le token
   if (status === 200) {
     const data = await reponse.json();

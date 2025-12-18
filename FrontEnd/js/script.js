@@ -237,7 +237,7 @@ modalBtnBack.addEventListener("click", (event) => {
 });
 
 // FONCTION VERIFIER TOUT LES CHAMPS ETC REMPLIT
-const uploadBox = document.querySelector(".upload-photo"); // le bloc bleu
+const uploadBox = document.querySelector(".upload-photo");
 const inputPhoto = document.getElementById("photo"); 
 const titre = document.getElementById("titre");
 const categorie = document.getElementById("categorie");
@@ -269,12 +269,12 @@ function etatFormulaire() {
     formulaireValide = false;
   }
 
-  // catégorie
+  // Catégorie
   if (categorie.value === "") {
     formulaireValide = false;
   }
 
-  // bouton
+  // Bouton
   bouton.disabled = !formulaireValide;
   return formulaireValide;
 }
@@ -296,7 +296,6 @@ form.addEventListener("submit", (event) => {
   if (!etatFormulaire()) {
     return;
   }
-    // post api
 });
 
 //PREVIEW IMAGE
@@ -336,6 +335,7 @@ function afficherTravauxModale(tableau) {
     icon.classList.add("fa-solid", "fa-trash-can");
     // Associer id du travail à l'icône poubelle
     icon.dataset.id = tableau[i].id;
+
     // SUPPRESSION TRAVAUX
     icon.addEventListener("click", async (event) => {
       // Récupération de l'id du travail cliqué
@@ -347,6 +347,7 @@ function afficherTravauxModale(tableau) {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
+      
       if (reponse.ok) {
         // MAJ du tableau des travaux. Recréer le tableau sans le travail qui vient d'être supprimé
         tableauElement = tableauElement.filter(travail => travail.id != id);
@@ -379,8 +380,8 @@ formulaireModale.addEventListener("submit", async (event) => {
   // ajout dans formData
   formData.append("image",inputPhoto.files[0]);
   formData.append("title", titre.value);
-  formData.append("category", categorie.value);
-  
+  formData.append("category", Number(categorie.value));
+
   const reponse = await fetch (`http://localhost:5678/api/works`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },

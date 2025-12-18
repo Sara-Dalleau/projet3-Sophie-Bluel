@@ -362,7 +362,7 @@ nav ul li a.active {
   z-index: 1000;
 }
 
-/*******************$*****MODALE****************************/
+/************************MODALE****************************/
 
 .modal {
   display: none;
@@ -499,8 +499,6 @@ nav ul li a.active {
   background-color: white;
   cursor: pointer;
 }
-
-
 /* Bouton Valider */
 .container-form button {
   align-self: center;
@@ -653,7 +651,6 @@ nav ul li a.active {
   border-radius: 2px;
   cursor: pointer;
 }
-
 
 /**/
 .bandeau-edition,

@@ -320,9 +320,9 @@ inputPhoto.addEventListener("change", () => {
 // AFFICHER TRAVAUX MODALE
 
 const modalGallery = document.querySelector(".modal-gallery");
-modalGallery.innerHTML = "";
 
 function afficherTravauxModale(tableau) {
+  modalGallery.innerHTML = "";
   for (let i = 0; i < tableau.length; i++){
     const figureElement = document.createElement("figure");
 
@@ -334,6 +334,24 @@ function afficherTravauxModale(tableau) {
 
     const icon = document.createElement("i");
     icon.classList.add("fa-solid", "fa-trash-can");
+    icon.dataset.id = tableau[i].id;
+
+    icon.addEventListener("click", async (event) => {
+      const id = event.target.dataset.id
+      const token = localStorage.getItem("token");
+      const reponse = await fetch(`http://localhost:5678/api/works/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (reponse.ok) {
+        tableauElement = tableauElement.filter(travail => travail.id != id);
+        afficherTravauxModale(tableauElement);
+        afficherTravaux(tableauElement);
+        console.log("supprimé");
+      } else {
+        console.log("erreur");
+      }
+    });
     
     figureElement.appendChild(icon);
     figureElement.appendChild(imgElement);

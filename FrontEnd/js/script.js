@@ -334,28 +334,80 @@ function afficherTravauxModale(tableau) {
 
     const icon = document.createElement("i");
     icon.classList.add("fa-solid", "fa-trash-can");
+    // Associer id du travail à l'icône poubelle
     icon.dataset.id = tableau[i].id;
-
+    // SUPPRESSION TRAVAUX
     icon.addEventListener("click", async (event) => {
-      const id = event.target.dataset.id
+      // Récupération de l'id du travail cliqué
+      const id = event.target.dataset.id 
+      // Récupération du token stocké lors de la connexion
       const token = localStorage.getItem("token");
+      // Appel à l'API pour supprimer le travail
       const reponse = await fetch(`http://localhost:5678/api/works/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
       if (reponse.ok) {
+        // MAJ du tableau des travaux. Recréer le tableau sans le travail qui vient d'être supprimé
         tableauElement = tableauElement.filter(travail => travail.id != id);
+        // MAJ galerie modale
         afficherTravauxModale(tableauElement);
+        // MAJ galerie principal
         afficherTravaux(tableauElement);
         console.log("supprimé");
       } else {
         console.log("erreur");
       }
     });
-    
     figureElement.appendChild(icon);
     figureElement.appendChild(imgElement);
     modalGallery.appendChild(figureElement);
   }
 }
 afficherTravauxModale(tableauElement);
+
+// AJOUT TRAVAUX VIA API 
+
+const formulaireModale = document.querySelector(".container-form form");
+
+formulaireModale.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const token = localStorage.getItem("token");
+
+  // création "sac"
+  const formData = new FormData(); 
+  // ajout dans formData
+  formData.append("image",inputPhoto.files[0]);
+  formData.append("title", titre.value);
+  formData.append("category", categorie.value);
+  
+  const reponse = await fetch (`http://localhost:5678/api/works`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: formData, // le nav gère tout seul avec formData (boundary ...)
+  }); 
+  // si l'API n’a pas réussi, j’arrête tout ici.
+  if (!reponse.ok) {
+    return; 
+  }
+
+  const nvTravail = await reponse.json();
+
+  //Ajout travail
+  tableauElement.push(nvTravail);
+
+  // MAJ galerie  modale et principale
+  afficherTravauxModale(tableauElement);
+  afficherTravaux(tableauElement);
+
+  // Reset du form et de la preview
+  form.reset();
+  previewImage.src = "";
+  previewImage.style.display = "none";
+  uploadBox.classList.remove("has-image");
+  inputPhoto.value = "";
+
+  //Retour galerie 
+  etatInterne = "galerie";
+  lectureEtatInterne();
+  });

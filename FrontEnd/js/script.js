@@ -185,11 +185,13 @@ modalBtnModifier.addEventListener("click", (event )=> {
 modalBtnClose.addEventListener("click", (event) => {
   etat = false;
   lectureEtat();
+  resetFormulaireModale();
 });
 
 overlay.addEventListener("click", (event) => {
   etat = false;
   lectureEtat();
+  resetFormulaireModale();
 });
 
 // ETAT INTERNE DE LA MODALE
@@ -208,7 +210,7 @@ function lectureEtatInterne () {
     modalTitre.textContent ="Galerie photo";
 
     galerie.style.display = "flex";
-    formulaireModal.style.display = "none"
+    formulaireModal.style.display = "none";
 
     btnAjouterPhoto.style.display = "flex";
     modalBtnBack.style.display = "none";
@@ -328,9 +330,6 @@ function afficherTravauxModale(tableau) {
     const imgElement = document.createElement("img");
     imgElement.src = tableau[i].imageUrl;
 
-    const btnDelete = document.createElement("button");
-    btnDelete.classList.add("btn-delete");
-
     const icon = document.createElement("i");
     icon.classList.add("fa-solid", "fa-trash-can");
     // Associer id du travail à l'icône poubelle
@@ -366,6 +365,17 @@ function afficherTravauxModale(tableau) {
   }
 }
 afficherTravauxModale(tableauElement);
+
+//RESET FORMULAIRE MODALE 
+
+function resetFormulaireModale() {
+  form.reset();
+  inputPhoto.value = "";
+  previewImage.src = "";
+  previewImage.style.display = "none";
+  uploadBox.classList.remove("has-image");
+  bouton.disabled = true;
+}
 
 // AJOUT TRAVAUX VIA API 
 
